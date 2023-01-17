@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
@@ -39,7 +38,7 @@ public class Parser {
 
 //			fileName = "檔案定義檔.xlsx|檔案定義檔2.xlsx";
 		}
-
+		path += "ETL_XML/";
 		List<Map<String, String>> listMap = parseXML(path);
 		write2Excel(path, listMap);
 
