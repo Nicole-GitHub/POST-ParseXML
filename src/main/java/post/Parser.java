@@ -62,7 +62,7 @@ public class Parser {
 		List<Map<String, String>> listMap = new ArrayList<Map<String, String>>();
 		Map<String, String> map = new HashMap<String, String>();
 
-		String jobName = "", jobActiveStatus = "", jobStepActiveStatus = "", frequencyID = "";
+		String jobName = "", jobActiveStatus = "", frequencyID = "";
 		try {
 
 			SAXReader reader = new SAXReader();// 建立解析物件
@@ -106,7 +106,7 @@ public class Parser {
 								if ("Command".equals(level4.getName()))
 									map.put("Command", level4.getStringValue());
 								if ("ActiveStatus".equals(level4.getName()))
-									jobStepActiveStatus = "0".equals(level4.getStringValue()) ? "N" : "Y";
+									map.put("JobStepActiveStatus", "0".equals(level4.getStringValue()) ? "N" : "Y");
 								save = true;
 							}
 						}
