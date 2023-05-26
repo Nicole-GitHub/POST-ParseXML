@@ -62,7 +62,7 @@ public class Parser {
 		List<Map<String, String>> listMap = new ArrayList<Map<String, String>>();
 		Map<String, String> map = new HashMap<String, String>();
 
-		String jobName = "", activeStatus = "", frequencyID = "";
+		String jobName = "", jobActiveStatus = "", jobStepActiveStatus = "", frequencyID = "";
 		try {
 
 			SAXReader reader = new SAXReader();// 建立解析物件
@@ -90,21 +90,23 @@ public class Parser {
 						while (level3Iterator.hasNext()) {// 遍歷所有的子子節點
 							// 第四層 <JobID>
 							Element level4 = (Element) level3Iterator.next();// 獲取子子節點 Element
-							if ("Auto_Job".equals(level3.getName())) {
+							if ("Auto_Job".equals(level3.getName())) { // 取Job本身
 								if ("JobName".equals(level4.getName()))
 									jobName = level4.getStringValue();
 								if ("FrequencyID".equals(level4.getName()))
 									frequencyID = level4.getStringValue();
 								if ("ActiveStatus".equals(level4.getName()))
-									activeStatus = "0".equals(level4.getStringValue()) ? "N" : "Y";
+									jobActiveStatus = "0".equals(level4.getStringValue()) ? "N" : "Y";
 								save = false;
-							} else {
+							} else { // 取JobStep
 								if ("StepName".equals(level4.getName()))
 									map.put("StepName", level4.getStringValue());
 								if ("Description".equals(level4.getName()))
 									map.put("Description", level4.getStringValue());
 								if ("Command".equals(level4.getName()))
 									map.put("Command", level4.getStringValue());
+								if ("ActiveStatus".equals(level4.getName()))
+									jobStepActiveStatus = "0".equals(level4.getStringValue()) ? "N" : "Y";
 								save = true;
 							}
 						}
@@ -113,7 +115,7 @@ public class Parser {
 							map.put("JobCategoryName", fileName);
 							map.put("JobName", jobName);
 							map.put("FrequencyID", frequencyID);
-							map.put("ActiveStatus", activeStatus);
+							map.put("JobActiveStatus", jobActiveStatus);
 							listMap.add(map);
 						}
 
@@ -154,7 +156,8 @@ public class Parser {
 			Tools.setCell(cellStyleNormal, row, cellnum++, map.get("Command"));
 			cellnum++; // 前置作業
 			cellnum++; // 後續作業
-			Tools.setCell(cellStyleNormal, row, cellnum++, map.get("ActiveStatus"));
+			Tools.setCell(cellStyleNormal, row, cellnum++, map.get("JobActiveStatus"));
+			Tools.setCell(cellStyleNormal, row, cellnum++, map.get("JobStepActiveStatus"));
 		}
 
 		// 將整理好的比對結果另寫出Excel檔
