@@ -139,7 +139,7 @@ public class Parser {
 	 * @throws Exception
 	 */
 	private static void write2Excel(String folderPath, List<Map<String, String>> listMap) throws Exception {
-		Workbook workbook = Tools.getWorkbook(folderPath + "../Sample - 排程整理.xlsx");
+		Workbook workbook = Tools.getWorkbook(folderPath + "../Sample - 排程整理(Java).xlsx");
 		Sheet sheet = workbook.getSheet("工作表1");
 		CellStyle cellStyleNormal = Tools.setStyleNormal(workbook);
 
@@ -162,7 +162,7 @@ public class Parser {
 		}
 
 		// 將整理好的比對結果另寫出Excel檔
-		Tools.output(workbook, folderPath, "排程整理.xlsx");
+		Tools.output(workbook, folderPath, "排程整理(Java).xlsx");
 
 	}
 }
