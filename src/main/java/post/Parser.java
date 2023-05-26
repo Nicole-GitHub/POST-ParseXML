@@ -33,8 +33,8 @@ public class Parser {
 //		String fileName = "";
 		String path = System.getProperty("user.dir") + File.separator; // Jar
 		if (!isStartupFromJar) {// IDE
-			path = os.contains("Mac") ? "/Users/nicole/Dropbox/POST/JavaTools/POST-ParseXML/ETL_XML/" // Mac
-					: "C:/Users/nicole_tsou/Dropbox/POST/JavaTools/POST-ParseXML/ETL_XML/"; // win
+			path = os.contains("Mac") ? "/Users/nicole/Dropbox/POST/JavaTools/POST-ParseXML/" // Mac
+					: "C:/Users/nicole_tsou/Dropbox/POST/JavaTools/POST-ParseXML/"; // win
 
 //			fileName = "檔案定義檔.xlsx|檔案定義檔2.xlsx";
 		}
@@ -49,6 +49,7 @@ public class Parser {
 //				System.out.println(set2);
 //			}
 //		}
+		System.out.println("Done !");
 
 	}
 
